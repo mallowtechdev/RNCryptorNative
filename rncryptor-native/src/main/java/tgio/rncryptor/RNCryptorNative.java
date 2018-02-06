@@ -52,7 +52,7 @@ public class RNCryptorNative {
      * @param password strong generated password
      * @return decrypted raw string
      */
-    public native String decrypt(String encrypted, String password);
+    public native byte[] decrypt(String encrypted, String password);
 
 
     /**
@@ -62,10 +62,10 @@ public class RNCryptorNative {
      * @param RNCryptorNativeCallback just a callback
      */
     public static void decryptAsync(String encrypted, String password, RNCryptorNativeCallback RNCryptorNativeCallback) {
-        String decrypted;
+        byte[] decrypted;
         try {
             decrypted = new RNCryptorNative().decrypt(encrypted, password);
-            RNCryptorNativeCallback.done(decrypted, null);
+            RNCryptorNativeCallback.done(new String(decrypted), null);
         } catch (Exception e) {
             RNCryptorNativeCallback.done(null, e);
         }
@@ -111,8 +111,8 @@ public class RNCryptorNative {
      */
     public static void decryptFile(File encryptedFile, File result, String password) throws IOException {
         byte[] b = readBytes(encryptedFile);
-        String decryptedImageString = new RNCryptorNative().decrypt(new String(b), password);
-        byte[] decodedBytes = Base64.decode(decryptedImageString, 0);
+        byte[] decryptedImageString = new RNCryptorNative().decrypt(new String(b), password);
+        byte[] decodedBytes = Base64.decode(new String(decryptedImageString), 0);
         writeBytes(result, decodedBytes);
     }
 

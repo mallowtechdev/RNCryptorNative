@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements OnChartValueSelec
     void decryptWithRNCryptorNative() {
         RNCryptorNative rncryptor = new RNCryptorNative();
         for (int i = 0; i < encriptedWithRNCryptorNative.length; i++) {
-            String result = rncryptor.decrypt(encriptedWithRNCryptorNative[i], password);
+            String result = new String(rncryptor.decrypt(encriptedWithRNCryptorNative[i], password));
         }
     }
 
