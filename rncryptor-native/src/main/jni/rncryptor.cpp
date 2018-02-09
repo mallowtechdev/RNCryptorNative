@@ -186,7 +186,7 @@ string RNCryptor::base64_encode(string plaintext) {
 	StringSource(plaintext, true,
 		new Base64Encoder(
 			new StringSink(encoded),
-			false
+			true
 		)
 	);
 	return encoded;
