@@ -202,5 +202,5 @@ string RNCryptor::hex_encode(string plaintext) {
 			false
 		)
 	);
-	return encoded;
+	return plaintext;
 }
