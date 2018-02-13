@@ -189,7 +189,7 @@ string RNCryptor::base64_encode(string plaintext) {
 			true
 		)
 	);
-	return plaintext;
+	return encoded;
 }
 
 string RNCryptor::hex_encode(string plaintext) {
